@@ -232,9 +232,10 @@ export default function Collections() {
 
   return (
     <Layout>
-      <div className="p-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col h-[calc(100vh-0px)]">
+        {/* Sticky top section - title + search */}
+        <div className="flex-shrink-0 px-8 pt-8 pb-4">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
             <h1 className="text-2xl font-bold text-white">Collections</h1>
             <div className="relative w-64">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -247,14 +248,37 @@ export default function Collections() {
               />
             </div>
           </div>
+        </div>
 
-          <div className="flex gap-6">
+        {/* Sticky sub-headers row */}
+        <div className="flex-shrink-0 px-8">
+          <div className="max-w-7xl mx-auto flex gap-6">
+            {/* Featured header */}
+            <div className="hidden lg:flex w-64 flex-shrink-0 items-center gap-2 pb-2">
+              <Sparkles className="w-4 h-4" style={{ color: "#11c4fe" }} />
+              <h2 className="text-sm font-semibold text-white uppercase tracking-wider">Featured</h2>
+            </div>
+            {/* Column headers */}
+            <div className="flex-1 min-w-0">
+              <div className="hidden md:grid grid-cols-12 gap-4 px-4 py-2 text-xs text-gray-500 uppercase tracking-wider">
+                <div className="col-span-4">Collection</div>
+                <div className="col-span-2 text-right">Floor Price</div>
+                <div className="col-span-2 text-right">Volume</div>
+                <div className="col-span-1 text-right">24h</div>
+                <div className="col-span-1 text-right">Items</div>
+                <div className="col-span-1 text-right">Owners</div>
+                <div className="col-span-1" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Single shared scrollable area for both columns */}
+        <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide px-8 pb-8">
+          <div className="max-w-7xl mx-auto flex gap-6">
+
             {/* Featured NFTs - Left Column */}
             <div className="hidden lg:block w-64 flex-shrink-0">
-              <div className="flex items-center gap-2 mb-4">
-                <Sparkles className="w-4 h-4" style={{ color: "#11c4fe" }} />
-                <h2 className="text-sm font-semibold text-white uppercase tracking-wider">Featured</h2>
-              </div>
               <div className="space-y-3">
                 {featuredNFTs.map((nft) => (
                   <Card
@@ -302,18 +326,6 @@ export default function Collections() {
 
             {/* Collections List - Right Side */}
             <div className="flex-1 min-w-0">
-              {/* Column Headers */}
-              <div className="hidden md:grid grid-cols-12 gap-4 px-4 py-2 text-xs text-gray-500 uppercase tracking-wider mb-2">
-                <div className="col-span-4">Collection</div>
-                <div className="col-span-2 text-right">Floor Price</div>
-                <div className="col-span-2 text-right">Volume</div>
-                <div className="col-span-1 text-right">24h</div>
-                <div className="col-span-1 text-right">Items</div>
-                <div className="col-span-1 text-right">Owners</div>
-                <div className="col-span-1" />
-              </div>
-
-              {/* Collection List */}
               <div className="space-y-2">
                 {filteredCollections.map((collection, index) => (
                   <Card
