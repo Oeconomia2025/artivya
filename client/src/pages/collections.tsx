@@ -10,6 +10,9 @@ import {
   Users,
   ImageIcon,
   ChevronRight,
+  Heart,
+  Eye,
+  Sparkles,
 } from "lucide-react";
 
 // Mock collections data
@@ -160,6 +163,63 @@ const mockCollections = [
   },
 ];
 
+// Featured NFTs
+const featuredNFTs = [
+  {
+    id: 1,
+    name: "Oeconomia Genesis #001",
+    collection: "Oeconomia Genesis",
+    image: "/oec-logo.png",
+    price: 2.5,
+    currency: "OEC",
+    rarity: "legendary",
+    likes: 156,
+    views: 2340,
+  },
+  {
+    id: 8,
+    name: "Excalibur Digital",
+    collection: "Legendary Weapons",
+    image: "/oec-logo.png",
+    price: 3.0,
+    currency: "OEC",
+    rarity: "legendary",
+    likes: 312,
+    views: 5100,
+  },
+  {
+    id: 6,
+    name: "DAO Crown #01",
+    collection: "DAO Emblems",
+    image: "/oec-logo.png",
+    price: 2.1,
+    currency: "OEC",
+    rarity: "epic",
+    likes: 189,
+    views: 3200,
+  },
+  {
+    id: 4,
+    name: "Amethyst Shard",
+    collection: "Magic Crystals",
+    image: "/oec-logo.png",
+    price: 1.5,
+    currency: "OEC",
+    rarity: "rare",
+    likes: 97,
+    views: 1800,
+  },
+];
+
+function getRarityColor(rarity: string) {
+  switch (rarity) {
+    case "legendary": return "text-yellow-400";
+    case "epic": return "text-purple-400";
+    case "rare": return "text-blue-400";
+    default: return "text-gray-400";
+  }
+}
+
 export default function Collections() {
   const [searchTerm, setSearchTerm] = useState("");
   const [, navigate] = useLocation();
@@ -173,7 +233,7 @@ export default function Collections() {
   return (
     <Layout>
       <div className="p-8">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-2xl font-bold text-white">Collections</h1>
             <div className="relative w-64">
@@ -188,121 +248,177 @@ export default function Collections() {
             </div>
           </div>
 
-          {/* Column Headers */}
-          <div className="hidden md:grid grid-cols-12 gap-4 px-4 py-2 text-xs text-gray-500 uppercase tracking-wider mb-2">
-            <div className="col-span-4">Collection</div>
-            <div className="col-span-2 text-right">Floor Price</div>
-            <div className="col-span-2 text-right">Volume</div>
-            <div className="col-span-1 text-right">24h</div>
-            <div className="col-span-1 text-right">Items</div>
-            <div className="col-span-1 text-right">Owners</div>
-            <div className="col-span-1" />
-          </div>
-
-          {/* Collection List */}
-          <div className="space-y-2">
-            {filteredCollections.map((collection, index) => (
-              <Card
-                key={collection.name}
-                className="crypto-card border-0 overflow-hidden cursor-pointer group hover:bg-white/5 transition-colors"
-                onClick={() => navigate(`/?collection=${encodeURIComponent(collection.name)}`)}
-              >
-                <div className="grid grid-cols-12 gap-4 items-center p-4">
-                  {/* Collection Info */}
-                  <div className="col-span-12 md:col-span-4 flex items-center gap-4">
-                    <span className="text-sm text-gray-500 w-6 text-right flex-shrink-0">
-                      {index + 1}
-                    </span>
-                    <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                      <img
-                        src={collection.image}
-                        alt={collection.name}
-                        className="w-8 h-8 object-cover"
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-white truncate">
-                          {collection.name}
-                        </h3>
-                        {collection.verified && (
-                          <Badge
-                            className="text-[10px] px-1.5 py-0 border-0"
-                            style={{ background: "linear-gradient(135deg, #11c4fe, #8a88f6)" }}
-                          >
-                            Verified
-                          </Badge>
-                        )}
+          <div className="flex gap-6">
+            {/* Featured NFTs - Left Column */}
+            <div className="hidden lg:block w-64 flex-shrink-0">
+              <div className="flex items-center gap-2 mb-4">
+                <Sparkles className="w-4 h-4" style={{ color: "#11c4fe" }} />
+                <h2 className="text-sm font-semibold text-white uppercase tracking-wider">Featured</h2>
+              </div>
+              <div className="space-y-3">
+                {featuredNFTs.map((nft) => (
+                  <Card
+                    key={nft.id}
+                    className="crypto-card border-0 overflow-hidden cursor-pointer group hover:bg-white/5 transition-colors"
+                    onClick={() => navigate(`/?collection=${encodeURIComponent(nft.collection)}`)}
+                  >
+                    <div className="relative">
+                      <div className="aspect-square bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden">
+                        <img
+                          src={nft.image}
+                          alt={nft.name}
+                          className="w-14 h-14 object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
                       </div>
-                      <p className="text-xs text-gray-500 truncate">
-                        {collection.description}
-                      </p>
+                      <Badge
+                        className={`absolute top-2 right-2 ${getRarityColor(nft.rarity)} bg-black/70 border-0 text-[10px]`}
+                      >
+                        {nft.rarity}
+                      </Badge>
                     </div>
-                  </div>
-
-                  {/* Floor Price */}
-                  <div className="col-span-4 md:col-span-2 text-right">
-                    <p className="font-semibold text-white">
-                      {collection.floorPrice} OEC
-                    </p>
-                    <p className="text-xs text-gray-500 md:hidden">Floor</p>
-                  </div>
-
-                  {/* Volume */}
-                  <div className="col-span-4 md:col-span-2 text-right">
-                    <p className="font-semibold" style={{ color: "#11c4fe" }}>
-                      {collection.totalVolume} OEC
-                    </p>
-                    <p className="text-xs text-gray-500 md:hidden">Volume</p>
-                  </div>
-
-                  {/* 24h Change */}
-                  <div className="col-span-4 md:col-span-1 text-right">
-                    <p
-                      className={`text-sm font-medium ${
-                        collection.change24h > 0
-                          ? "text-green-400"
-                          : collection.change24h < 0
-                          ? "text-red-400"
-                          : "text-gray-400"
-                      }`}
-                    >
-                      {collection.change24h > 0 ? "+" : ""}
-                      {collection.change24h}%
-                    </p>
-                  </div>
-
-                  {/* Items */}
-                  <div className="hidden md:block col-span-1 text-right">
-                    <div className="flex items-center justify-end gap-1 text-gray-400">
-                      <ImageIcon className="w-3 h-3" />
-                      <span className="text-sm">{collection.items}</span>
+                    <div className="p-3">
+                      <h3 className="text-sm font-semibold text-white truncate">{nft.name}</h3>
+                      <p className="text-xs text-gray-500 truncate">{nft.collection}</p>
+                      <div className="flex items-center justify-between mt-2">
+                        <p className="text-sm font-bold" style={{ color: "#11c4fe" }}>
+                          {nft.price} {nft.currency}
+                        </p>
+                        <div className="flex items-center gap-2 text-[10px] text-gray-500">
+                          <span className="flex items-center">
+                            <Heart className="w-2.5 h-2.5 mr-0.5" />
+                            {nft.likes}
+                          </span>
+                          <span className="flex items-center">
+                            <Eye className="w-2.5 h-2.5 mr-0.5" />
+                            {nft.views}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Owners */}
-                  <div className="hidden md:block col-span-1 text-right">
-                    <div className="flex items-center justify-end gap-1 text-gray-400">
-                      <Users className="w-3 h-3" />
-                      <span className="text-sm">{collection.owners}</span>
-                    </div>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="hidden md:flex col-span-1 justify-end">
-                    <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors" />
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-
-          {filteredCollections.length === 0 && (
-            <div className="text-center py-16">
-              <ImageIcon className="w-12 h-12 mx-auto mb-4 text-gray-600" />
-              <p className="text-gray-400">No collections found</p>
+                  </Card>
+                ))}
+              </div>
             </div>
-          )}
+
+            {/* Collections List - Right Side */}
+            <div className="flex-1 min-w-0">
+              {/* Column Headers */}
+              <div className="hidden md:grid grid-cols-12 gap-4 px-4 py-2 text-xs text-gray-500 uppercase tracking-wider mb-2">
+                <div className="col-span-4">Collection</div>
+                <div className="col-span-2 text-right">Floor Price</div>
+                <div className="col-span-2 text-right">Volume</div>
+                <div className="col-span-1 text-right">24h</div>
+                <div className="col-span-1 text-right">Items</div>
+                <div className="col-span-1 text-right">Owners</div>
+                <div className="col-span-1" />
+              </div>
+
+              {/* Collection List */}
+              <div className="space-y-2">
+                {filteredCollections.map((collection, index) => (
+                  <Card
+                    key={collection.name}
+                    className="crypto-card border-0 overflow-hidden cursor-pointer group hover:bg-white/5 transition-colors"
+                    onClick={() => navigate(`/?collection=${encodeURIComponent(collection.name)}`)}
+                  >
+                    <div className="grid grid-cols-12 gap-4 items-center p-4">
+                      {/* Collection Info */}
+                      <div className="col-span-12 md:col-span-4 flex items-center gap-4">
+                        <span className="text-sm text-gray-500 w-6 text-right flex-shrink-0">
+                          {index + 1}
+                        </span>
+                        <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                          <img
+                            src={collection.image}
+                            alt={collection.name}
+                            className="w-8 h-8 object-cover"
+                          />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2">
+                            <h3 className="font-semibold text-white truncate">
+                              {collection.name}
+                            </h3>
+                            {collection.verified && (
+                              <Badge
+                                className="text-[10px] px-1.5 py-0 border-0"
+                                style={{ background: "linear-gradient(135deg, #11c4fe, #8a88f6)" }}
+                              >
+                                Verified
+                              </Badge>
+                            )}
+                          </div>
+                          <p className="text-xs text-gray-500 truncate">
+                            {collection.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Floor Price */}
+                      <div className="col-span-4 md:col-span-2 text-right">
+                        <p className="font-semibold text-white">
+                          {collection.floorPrice} OEC
+                        </p>
+                        <p className="text-xs text-gray-500 md:hidden">Floor</p>
+                      </div>
+
+                      {/* Volume */}
+                      <div className="col-span-4 md:col-span-2 text-right">
+                        <p className="font-semibold" style={{ color: "#11c4fe" }}>
+                          {collection.totalVolume} OEC
+                        </p>
+                        <p className="text-xs text-gray-500 md:hidden">Volume</p>
+                      </div>
+
+                      {/* 24h Change */}
+                      <div className="col-span-4 md:col-span-1 text-right">
+                        <p
+                          className={`text-sm font-medium ${
+                            collection.change24h > 0
+                              ? "text-green-400"
+                              : collection.change24h < 0
+                              ? "text-red-400"
+                              : "text-gray-400"
+                          }`}
+                        >
+                          {collection.change24h > 0 ? "+" : ""}
+                          {collection.change24h}%
+                        </p>
+                      </div>
+
+                      {/* Items */}
+                      <div className="hidden md:block col-span-1 text-right">
+                        <div className="flex items-center justify-end gap-1 text-gray-400">
+                          <ImageIcon className="w-3 h-3" />
+                          <span className="text-sm">{collection.items}</span>
+                        </div>
+                      </div>
+
+                      {/* Owners */}
+                      <div className="hidden md:block col-span-1 text-right">
+                        <div className="flex items-center justify-end gap-1 text-gray-400">
+                          <Users className="w-3 h-3" />
+                          <span className="text-sm">{collection.owners}</span>
+                        </div>
+                      </div>
+
+                      {/* Arrow */}
+                      <div className="hidden md:flex col-span-1 justify-end">
+                        <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors" />
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+
+              {filteredCollections.length === 0 && (
+                <div className="text-center py-16">
+                  <ImageIcon className="w-12 h-12 mx-auto mb-4 text-gray-600" />
+                  <p className="text-gray-400">No collections found</p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

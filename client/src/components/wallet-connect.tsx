@@ -121,8 +121,8 @@ export function WalletConnect({ collapsed = false }: WalletConnectProps) {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <button
-          className={`w-full flex items-center ${
-            collapsed ? "justify-center px-2" : "space-x-3 px-3"
+          className={`w-full flex items-center justify-center ${
+            collapsed ? "px-2" : "gap-3 px-3"
           } py-2 rounded-lg text-white font-medium shadow-lg transition-all duration-200 hover:opacity-90`}
           style={{ background: 'linear-gradient(135deg, #11c4fe, #8a88f6)' }}
           title={collapsed ? "Connect Wallet" : undefined}
