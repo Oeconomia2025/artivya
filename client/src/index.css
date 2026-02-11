@@ -4,11 +4,7 @@
 
 /* Prevent white flash on page refresh */
 html {
-  background-color: hsl(219, 39%, 11%);
-}
-
-html.light {
-  background-color: hsl(0, 0%, 98%);
+  background-color: #000000;
 }
 
 body {
@@ -18,101 +14,67 @@ body {
 }
 
 :root {
-  /* Light mode colors */
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(20, 14.3%, 4.1%);
-  --muted: hsl(60, 4.8%, 95.9%);
-  --muted-foreground: hsl(25, 5.3%, 44.7%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(20, 14.3%, 4.1%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(20, 14.3%, 4.1%);
-  --border: hsl(20, 5.9%, 90%);
-  --input: hsl(20, 5.9%, 90%);
-  --primary: hsl(207, 90%, 54%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(60, 4.8%, 95.9%);
-  --secondary-foreground: hsl(24, 9.8%, 10%);
-  --accent: hsl(60, 4.8%, 95.9%);
-  --accent-foreground: hsl(24, 9.8%, 10%);
-  --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(20, 14.3%, 4.1%);
-  --radius: 0.5rem;
-
-  /* Crypto dashboard specific colors - Light mode */
-  --crypto-dark: hsl(0, 0%, 98%);
-  --crypto-card: hsl(0, 0%, 100%);
-  --crypto-border: hsl(220, 13%, 91%);
-  --crypto-green: hsl(142, 76%, 36%);
-  --crypto-red: hsl(0, 84%, 60%);
-  --crypto-gold: hsl(43, 96%, 56%);
-  --crypto-blue: hsl(217, 91%, 60%);
-}
-
-.light {
-  /* Light mode colors override */
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(20, 14.3%, 4.1%);
-  --muted: hsl(60, 4.8%, 95.9%);
-  --muted-foreground: hsl(25, 5.3%, 44.7%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(20, 14.3%, 4.1%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(20, 14.3%, 4.1%);
-  --border: hsl(20, 5.9%, 90%);
-  --input: hsl(20, 5.9%, 90%);
-  --primary: hsl(207, 90%, 54%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(60, 4.8%, 95.9%);
-  --secondary-foreground: hsl(24, 9.8%, 10%);
-  --accent: hsl(60, 4.8%, 95.9%);
-  --accent-foreground: hsl(24, 9.8%, 10%);
-  --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(20, 14.3%, 4.1%);
-  --radius: 0.5rem;
-
-  /* Crypto dashboard specific colors - Light mode */
-  --crypto-dark: hsl(0, 0%, 98%);
-  --crypto-card: hsl(0, 0%, 100%);
-  --crypto-border: hsl(220, 13%, 91%);
-  --crypto-green: hsl(142, 76%, 36%);
-  --crypto-red: hsl(0, 84%, 60%);
-  --crypto-gold: hsl(43, 96%, 56%);
-  --crypto-blue: hsl(217, 91%, 60%);
-}
-
-.dark {
-  --background: hsl(219, 39%, 11%);
+  --background: hsl(0, 0%, 0%);
   --foreground: hsl(0, 0%, 98%);
-  --muted: hsl(220, 26%, 14%);
+  --muted: hsl(240, 20%, 10%);
   --muted-foreground: hsl(215, 16%, 57%);
-  --popover: hsl(220, 26%, 14%);
+  --popover: hsl(240, 20%, 6%);
   --popover-foreground: hsl(0, 0%, 98%);
-  --card: hsl(220, 26%, 14%);
+  --card: hsl(240, 20%, 6%);
   --card-foreground: hsl(0, 0%, 98%);
-  --border: hsl(215, 16%, 25%);
-  --input: hsl(215, 16%, 25%);
-  --primary: hsl(217, 91%, 60%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(220, 26%, 14%);
+  --border: hsl(248, 53%, 55%);
+  --input: hsl(248, 53%, 55%);
+  --primary: hsl(192, 95%, 53%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(240, 20%, 10%);
   --secondary-foreground: hsl(0, 0%, 98%);
-  --accent: hsl(220, 26%, 14%);
+  --accent: hsl(240, 20%, 10%);
   --accent-foreground: hsl(0, 0%, 98%);
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(240, 4.9%, 83.9%);
+  --ring: hsl(248, 53%, 55%);
   --radius: 0.5rem;
 
-  /* Crypto dashboard specific colors - Dark mode */
-  --crypto-dark: hsl(219, 39%, 11%);
-  --crypto-card: hsl(220, 26%, 14%);
-  --crypto-border: hsl(215, 16%, 25%);
+  /* Crypto dashboard specific colors */
+  --crypto-dark: #000000;
+  --crypto-card: hsl(240, 20%, 6%);
+  --crypto-border: hsl(248, 53%, 55%);
   --crypto-green: hsl(142, 76%, 36%);
   --crypto-red: hsl(0, 84%, 60%);
   --crypto-gold: hsl(43, 96%, 56%);
-  --crypto-blue: hsl(217, 91%, 60%);
+  --crypto-blue: #11c4fe;
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 20%, 10%);
+  --muted-foreground: hsl(215, 16%, 57%);
+  --popover: hsl(240, 20%, 6%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 20%, 6%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(248, 53%, 55%);
+  --input: hsl(248, 53%, 55%);
+  --primary: hsl(192, 95%, 53%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(240, 20%, 10%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 20%, 10%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(248, 53%, 55%);
+  --radius: 0.5rem;
+
+  /* Crypto dashboard specific colors - Dark mode */
+  --crypto-dark: #000000;
+  --crypto-card: hsl(240, 20%, 6%);
+  --crypto-border: hsl(248, 53%, 55%);
+  --crypto-green: hsl(142, 76%, 36%);
+  --crypto-red: hsl(0, 84%, 60%);
+  --crypto-gold: hsl(43, 96%, 56%);
+  --crypto-blue: #11c4fe;
 }
 
 @layer base {
@@ -127,63 +89,66 @@ body {
 
 @layer utilities {
   .crypto-gradient {
-    background: linear-gradient(135deg, var(--crypto-gold), var(--crypto-blue));
+    background: linear-gradient(135deg, #11c4fe, #8a88f6);
   }
-  
+
   .crypto-card {
     @apply bg-card border-border text-card-foreground;
   }
-  
+
   .crypto-hover {
-    @apply hover:border-orange-400/30 transition-colors;
+    @apply hover:border-purple-400/30 transition-colors;
   }
-  
+
   .text-crypto-green {
     color: var(--crypto-green);
   }
-  
+
   .text-crypto-red {
     color: var(--crypto-red);
   }
-  
+
   .text-crypto-gold {
     color: var(--crypto-gold);
   }
-  
+
   .text-crypto-blue {
     color: var(--crypto-blue);
   }
-  
+
   .bg-crypto-green {
     background-color: var(--crypto-green);
   }
-  
+
   .bg-crypto-red {
     background-color: var(--crypto-red);
   }
-  
+
   .bg-crypto-gold {
     background-color: var(--crypto-gold);
   }
-  
+
   .bg-crypto-blue {
     background-color: var(--crypto-blue);
   }
 }
 
-/* Hide scrollbar utility class */
-.scrollbar-hide {
-  /* Hide scrollbar for IE, Edge and Firefox */
+/* Hide page scrollbar globally */
+html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.scrollbar-hide::-webkit-scrollbar {
+html::-webkit-scrollbar {
   display: none;
 }
 
-/* Custom 0.5px border for token logos */
-.border-half {
-  border: 0.5px solid white;
+/* Hide scrollbar utility class */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

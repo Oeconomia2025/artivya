@@ -2161,7 +2161,7 @@ export function NFTMarket() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             {/* Filters Sidebar */}
             {showFilters && (
-              <Card className="crypto-card p-6 border h-fit">
+              <Card className="crypto-card p-6 border-0 h-fit">
                 <h3 className="text-lg font-semibold mb-4">Filters</h3>
                 
                 {/* Search */}
@@ -2278,7 +2278,7 @@ export function NFTMarket() {
             {/* Main Content */}
             <div className={showFilters ? "lg:col-span-4" : "lg:col-span-5"}>
               {/* Sort and View Controls */}
-              <Card className="crypto-card p-4 border mb-6">
+              <Card className="crypto-card p-4 border-0 mb-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     <span className="text-sm text-gray-400">
@@ -2342,7 +2342,7 @@ export function NFTMarket() {
                   {paginatedNFTs.map((nft) => (
                     <Dialog key={nft.id}>
                       <DialogTrigger asChild>
-                        <Card className="crypto-card border cursor-pointer hover:border-crypto-blue/50 transition-all duration-300 overflow-hidden group">
+                        <Card className="crypto-card border-0 cursor-pointer transition-all duration-300 overflow-hidden group">
                           <div className="relative">
                             <div className="aspect-square bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden">
                               <img 
@@ -2505,7 +2505,7 @@ export function NFTMarket() {
               ) : (
                 <div className="space-y-4">
                   {paginatedNFTs.map((nft) => (
-                    <Card key={nft.id} className="crypto-card p-4 border">
+                    <Card key={nft.id} className="crypto-card p-4 border-0">
                       <div className="flex items-center space-x-4">
                         <div className="w-16 h-16 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg flex items-center justify-center">
                           <img 
@@ -2553,7 +2553,7 @@ export function NFTMarket() {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <Card className="crypto-card p-4 border mt-6">
+                <Card className="crypto-card p-4 border-0 mt-6">
                   <div className="flex items-center justify-between">
                     <Button
                       variant="outline"
