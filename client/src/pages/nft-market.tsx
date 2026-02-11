@@ -2154,15 +2154,78 @@ export function NFTMarket() {
 
   return (
     <Layout>
-      <div className="p-8">
-        <div className="max-w-7xl mx-auto">
-          
+      <div className="flex flex-col h-[calc(100vh-0px)]">
+        {/* Sticky top bar - Sort and View Controls */}
+        <div
+          className="flex-shrink-0 sticky top-0 z-30 p-4"
+          style={{ backgroundColor: "hsl(240, 20%, 6%)" }}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-400">
+                {filteredNFTs.length} NFTs found
+              </span>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-40 bg-black/30 border-white/20">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="newest">Newest</SelectItem>
+                  <SelectItem value="oldest">Oldest</SelectItem>
+                  <SelectItem value="price-low">Price: Low to High</SelectItem>
+                  <SelectItem value="price-high">Price: High to Low</SelectItem>
+                  <SelectItem value="popular">Most Popular</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button
+                variant="outline"
+                className="border-crypto-blue/30 text-crypto-blue hover:bg-crypto-blue/10"
+                disabled={!isConnected}
+                title={!isConnected ? "Connect wallet to create NFTs" : ""}
+              >
+                <Camera className="w-4 h-4 mr-2" />
+                Create NFT
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setShowFilters(!showFilters)}
+                className="border-gray-600 hover:bg-gray-600/10"
+              >
+                <Filter className="w-4 h-4 mr-2" />
+                Filters
+              </Button>
+            </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-            {/* Filters Sidebar */}
-            {showFilters && (
-              <Card className="crypto-card p-6 border-0 h-fit">
-                <h3 className="text-lg font-semibold mb-4">Filters</h3>
+            <div className="flex items-center space-x-2">
+              <Button
+                variant={viewMode === "grid" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setViewMode("grid")}
+                className={viewMode === "grid" ? 'bg-crypto-blue' : 'border-gray-600'}
+              >
+                <Grid3X3 className="w-4 h-4" />
+              </Button>
+              <Button
+                variant={viewMode === "list" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setViewMode("list")}
+                className={viewMode === "list" ? 'bg-crypto-blue' : 'border-gray-600'}
+              >
+                <List className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Scrollable content area */}
+        <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
+          <div className={`${showFilters ? "pl-0" : "pl-8"} pr-8`}>
+            <div>
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                {/* Filters Sidebar */}
+                {showFilters && (
+                  <div className="p-6 min-h-full" style={{ backgroundColor: "hsl(240, 20%, 6%)" }}>
+                    <h3 className="text-lg font-semibold mb-4">Filters</h3>
                 
                 {/* Search */}
                 <div className="mb-6">
@@ -2272,70 +2335,11 @@ export function NFTMarket() {
                 >
                   Clear Filters
                 </Button>
-              </Card>
+              </div>
             )}
 
-            {/* Main Content */}
-            <div className={showFilters ? "lg:col-span-4" : "lg:col-span-5"}>
-              {/* Sort and View Controls */}
-              <Card className="crypto-card p-4 border-0 mb-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <span className="text-sm text-gray-400">
-                      {filteredNFTs.length} NFTs found
-                    </span>
-                    <Select value={sortBy} onValueChange={setSortBy}>
-                      <SelectTrigger className="w-40 bg-black/30 border-white/20">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="newest">Newest</SelectItem>
-                        <SelectItem value="oldest">Oldest</SelectItem>
-                        <SelectItem value="price-low">Price: Low to High</SelectItem>
-                        <SelectItem value="price-high">Price: High to Low</SelectItem>
-                        <SelectItem value="popular">Most Popular</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <Button 
-                      variant="outline"
-                      className="border-crypto-blue/30 text-crypto-blue hover:bg-crypto-blue/10"
-                      disabled={!isConnected}
-                      title={!isConnected ? "Connect wallet to create NFTs" : ""}
-                    >
-                      <Camera className="w-4 h-4 mr-2" />
-                      Create NFT
-                    </Button>
-                    <Button 
-                      variant="outline"
-                      onClick={() => setShowFilters(!showFilters)}
-                      className="border-gray-600 hover:bg-gray-600/10"
-                    >
-                      <Filter className="w-4 h-4 mr-2" />
-                      Filters
-                    </Button>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      variant={viewMode === "grid" ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setViewMode("grid")}
-                      className={viewMode === "grid" ? 'bg-crypto-blue' : 'border-gray-600'}
-                    >
-                      <Grid3X3 className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant={viewMode === "list" ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setViewMode("list")}
-                      className={viewMode === "list" ? 'bg-crypto-blue' : 'border-gray-600'}
-                    >
-                      <List className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-
+                {/* Main Content */}
+                <div className={`${showFilters ? "lg:col-span-4" : "lg:col-span-5"} pt-4`}>
               {/* NFT Grid/List */}
               {viewMode === "grid" ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
@@ -2591,6 +2595,8 @@ export function NFTMarket() {
                   </div>
                 </Card>
               )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
